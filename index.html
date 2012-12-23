@@ -1,0 +1,53 @@
+<html> 
+		<head> 
+				<script src="http://codef.santo.fr/codef/codef_core.js"></script> 
+				<script src="http://codef.santo.fr/codef/codef_starfield.js"></script> 
+
+				<<style type="text/css">
+						body { background-color: #000; }
+
+				</style>
+				<script> 
+						var mycanvas, starfield;
+ 					 
+ 						var parameters = {
+ 							starfield: { 
+ 							  	numOfStars: 100,
+ 							  	speed:      1,
+ 							  	width:      640,
+ 							  	height:     480,
+ 							  	centerx:    10,
+ 							  	centery:    this.height / 2,
+ 							  	color:      '#fff',
+ 							  	ratio:      100
+
+ 							}
+ 						}
+						function init(){
+							mycanvas  = new canvas(640, 480,"main");
+
+							starfield = starfield3D(mycanvas, 
+																			parameters.starfield.numOfStars,
+																		  parameters.starfield.speed, 
+																		  parameters.starfield.width,
+																		  parameters.starfield.height, 
+																		  parameters.starfield.centerx, 
+																		  parameters.starfield.centery, 
+																		  parameters.starfield.color, 
+																		  parameters.starfield.ratio,
+																		  0,
+																		  0);
+							go();
+						}
+						 
+						function go(){
+							mycanvas.fill('#000');
+							starfield.draw();
+							requestAnimFrame( go );
+						}
+		 		</script>
+		</head>
+		<body onload="init()">
+			<div id="main" style="text-align: center"></div>
+		</body>
+</html>
